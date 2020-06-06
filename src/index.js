@@ -1,14 +1,10 @@
-export default function classie (classes) {
-  if (!classes) {
-    classes = [];
-  }
+export default function classie (arg) {
+  let classes = [];
 
-  if (!Array.isArray(classes)) {
-    classes = [classes];
-  }
-
-  function add (arg) {
-    if (arg.constructor === String) {
+  function add (arg = []) {
+    if (Array.isArray(arg)) {
+      classes = [...classes, ...arg];
+    } else if (arg.constructor === String) {
       classes.push(arg);
     } else {
       for (const c of Object.keys(arg)) {
@@ -28,5 +24,5 @@ export default function classie (classes) {
     return classes.join(' ');
   };
 
-  return add;
+  return add(arg);
 }
