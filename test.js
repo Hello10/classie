@@ -30,6 +30,13 @@ describe('classie', ()=> {
     Assert.equal(`${classes}`, 'Honk Donk! Funk Dirk Derp?!');
   });
 
+  it('should return empty string when object with no true values', ()=> {
+    const classes = classie({
+      wow: false
+    });
+    Assert.equal(classes.toString(), '');
+  });
+
   it('should handle no initial arg', ()=> {
     const classes = classie();
     Assert.equal(classes.toString(), '');
